@@ -1,0 +1,29 @@
+Test-Command: /usr/share/cargo/bin/cargo-auto-test pyo3-macros 0.16.5 --all-targets --all-features
+Features: test-name=rust-pyo3-macros:@
+Depends: dh-cargo (>= 18), @
+Restrictions: allow-stderr, skip-not-installable
+
+Test-Command: /usr/share/cargo/bin/cargo-auto-test pyo3-macros 0.16.5 --all-targets 
+Features: test-name=librust-pyo3-macros-dev:default
+Depends: dh-cargo (>= 18), @
+Restrictions: allow-stderr, skip-not-installable
+
+Test-Command: /usr/share/cargo/bin/cargo-auto-test pyo3-macros 0.16.5 --all-targets --no-default-features --features multiple-pymethods
+Features: test-name=librust-pyo3-macros-dev:multiple-pymethods
+Depends: dh-cargo (>= 18), @
+Restrictions: allow-stderr, skip-not-installable
+
+Test-Command: /usr/share/cargo/bin/cargo-auto-test pyo3-macros 0.16.5 --all-targets --no-default-features
+Features: test-name=librust-pyo3-macros-dev:
+Depends: dh-cargo (>= 18), @
+Restrictions: allow-stderr, skip-not-installable
+
+Test-Command: /usr/share/cargo/bin/cargo-auto-test pyo3-macros 0.16.5 --all-targets --no-default-features --features abi3
+Features: test-name=librust-pyo3-macros+abi3-dev:abi3
+Depends: dh-cargo (>= 18), @
+Restrictions: allow-stderr, skip-not-installable
+
+Test-Command: /usr/share/cargo/bin/cargo-auto-test pyo3-macros 0.16.5 --all-targets --no-default-features --features pyproto
+Features: test-name=librust-pyo3-macros+pyproto-dev:pyproto
+Depends: dh-cargo (>= 18), @
+Restrictions: allow-stderr, skip-not-installable
