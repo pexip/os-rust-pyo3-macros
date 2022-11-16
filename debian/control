@@ -12,14 +12,16 @@ Build-Depends: debhelper (>= 12),
  librust-syn-1+default-dev (>= 1.0.56-~~) <!nocheck>,
  librust-syn-1+extra-traits-dev (>= 1.0.56-~~) <!nocheck>,
  librust-syn-1+full-dev (>= 1.0.56-~~) <!nocheck>
-Maintainer: Debian Rust Maintainers <pkg-rust-maintainers@alioth-lists.debian.net>
-Uploaders:
+Maintainer: Pexip AS <packaging@pexip.com>
+XSBC-Pexip-Original-Maintainer: Debian Rust Maintainers <pkg-rust-maintainers@alioth-lists.debian.net>
+XSBC-Pexip-Original-Uploaders:
  Jelmer Vernooĳ <jelmer@debian.org>
 Standards-Version: 4.5.1
 Vcs-Git: https://salsa.debian.org/rust-team/debcargo-conf.git [src/pyo3-macros]
 Vcs-Browser: https://salsa.debian.org/rust-team/debcargo-conf/tree/master/src/pyo3-macros
 Homepage: https://github.com/pyo3/pyo3
 Rules-Requires-Root: no
+XS-Pexip-Upstream: http://ftp.debian.org/debian/ bookworm
 
 Package: librust-pyo3-macros-dev
 Architecture: any
