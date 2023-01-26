@@ -9,8 +9,8 @@ use proc_macro::TokenStream;
 use proc_macro2::TokenStream as TokenStream2;
 use pyo3_macros_backend::{
     build_derive_from_pyobject, build_py_class, build_py_enum, build_py_function, build_py_methods,
-    get_doc, process_functions_in_module, pymodule_impl, wrap_pyfunction_impl, wrap_pymodule_impl,
-    PyClassArgs, PyClassMethodsType, PyFunctionOptions, PyModuleOptions, WrapPyFunctionArgs,
+    get_doc, process_functions_in_module, pymodule_impl, PyClassArgs, PyClassMethodsType,
+    PyFunctionOptions, PyModuleOptions,
 };
 use quote::quote;
 use syn::{parse::Nothing, parse_macro_input};
@@ -30,6 +30,11 @@ use syn::{parse::Nothing, parse_macro_input};
 ///
 /// For more on creating Python modules see the [module section of the guide][1].
 ///
+/// Due to technical limitations on how `#[pymodule]` is implemented, a function marked
+/// `#[pymodule]` cannot have a module with the same name in the same scope. (The
+/// `#[pymodule]` implementation generates a hidden module with the same name containing
+/// metadata about the module, which is used by `wrap_pymodule!`).
+///
 /// [1]: https://pyo3.rs/latest/module.html
 #[proc_macro_attribute]
 pub fn pymodule(args: TokenStream, input: TokenStream) -> TokenStream {
@@ -41,7 +46,7 @@ pub fn pymodule(args: TokenStream, input: TokenStream) -> TokenStream {
         Err(e) => return e.into_compile_error().into(),
     };
 
-    if let Err(err) = process_functions_in_module(&mut ast) {
+    if let Err(err) = process_functions_in_module(&options, &mut ast) {
         return err.into_compile_error().into();
     }
 
@@ -58,7 +63,7 @@ pub fn pymodule(args: TokenStream, input: TokenStream) -> TokenStream {
 
 /// A proc macro used to implement Python's [dunder methods][1].
 ///
-/// This atribute is required on blocks implementing [`PyObjectProtocol`][2],
+/// This attribute is required on blocks implementing [`PyObjectProtocol`][2],
 /// [`PyNumberProtocol`][3], [`PyGCProtocol`][4] and [`PyIterProtocol`][5].
 ///
 /// [1]: https://docs.python.org/3/reference/datamodel.html#special-method-names
@@ -79,21 +84,6 @@ pub fn pyproto(_: TokenStream, input: TokenStream) -> TokenStream {
     .into()
 }
 
-/// A proc macro used to expose Rust structs and fieldless enums as Python objects.
-///
-#[cfg_attr(docsrs, cfg_attr(docsrs, doc = include_str!("../docs/pyclass_parameters.md")))]
-///
-/// For more on creating Python classes,
-/// see the [class section of the guide][1].
-///
-/// [1]: https://pyo3.rs/latest/class.html
-/// [params-1]: ../prelude/struct.PyAny.html
-/// [params-2]: https://en.wikipedia.org/wiki/Free_list
-/// [params-3]: std::marker::Send
-/// [params-4]: std::rc::Rc
-/// [params-5]: std::sync::Arc
-/// [params-6]: https://docs.python.org/3/library/weakref.html
-/// [params-mapping]: https://pyo3.rs/latest/class/protocols.html#mapping--sequence-types
 #[proc_macro_attribute]
 pub fn pyclass(attr: TokenStream, input: TokenStream) -> TokenStream {
     use syn::Item;
@@ -192,25 +182,6 @@ pub fn derive_from_py_object(item: TokenStream) -> TokenStream {
         #expanded
     )
     .into()
-}
-
-/// Wraps a Rust function annotated with [`#[pyfunction]`](macro@crate::pyfunction).
-///
-/// This can be used with `PyModule::add_function` to add free functions to a `PyModule` - see its
-/// documentation for more information.
-#[proc_macro]
-pub fn wrap_pyfunction(input: TokenStream) -> TokenStream {
-    let args = parse_macro_input!(input as WrapPyFunctionArgs);
-    wrap_pyfunction_impl(args).into()
-}
-
-/// Returns a function that takes a `Python` instance and returns a Python module.
-///
-/// Use this together with [`#[pymodule]`](macro@crate::pymodule) and `PyModule::add_wrapped`.
-#[proc_macro]
-pub fn wrap_pymodule(input: TokenStream) -> TokenStream {
-    let path = parse_macro_input!(input as syn::Path);
-    wrap_pymodule_impl(path).unwrap_or_compile_error().into()
 }
 
 fn pyclass_impl(
