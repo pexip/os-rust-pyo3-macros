@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 12),
  rustc:native <!nocheck>,
  libstd-rust-dev <!nocheck>,
  librust-proc-macro2-1-dev <!nocheck>,
- librust-pyo3-macros-backend-0.16.5+default-dev <!nocheck>,
+ librust-pyo3-macros-backend-0.17.3+default-dev <!nocheck>,
  librust-quote-1+default-dev <!nocheck>,
  librust-syn-1+default-dev (>= 1.0.56-~~) <!nocheck>,
  librust-syn-1+extra-traits-dev (>= 1.0.56-~~) <!nocheck>,
@@ -16,10 +16,11 @@ Maintainer: Pexip AS <packaging@pexip.com>
 XSBC-Pexip-Original-Maintainer: Debian Rust Maintainers <pkg-rust-maintainers@alioth-lists.debian.net>
 XSBC-Pexip-Original-Uploaders:
  Jelmer Vernooĳ <jelmer@debian.org>
-Standards-Version: 4.5.1
+Standards-Version: 4.6.1
 Vcs-Git: https://salsa.debian.org/rust-team/debcargo-conf.git [src/pyo3-macros]
 Vcs-Browser: https://salsa.debian.org/rust-team/debcargo-conf/tree/master/src/pyo3-macros
 Homepage: https://github.com/pyo3/pyo3
+X-Cargo-Crate: pyo3-macros
 Rules-Requires-Root: no
 XS-Pexip-Upstream: http://ftp.debian.org/debian/ bookworm
 
@@ -29,7 +30,7 @@ Multi-Arch: same
 Depends:
  ${misc:Depends},
  librust-proc-macro2-1-dev,
- librust-pyo3-macros-backend-0.16.5+default-dev,
+ librust-pyo3-macros-backend-0.17.3+default-dev,
  librust-quote-1+default-dev,
  librust-syn-1+default-dev (>= 1.0.56-~~),
  librust-syn-1+extra-traits-dev (>= 1.0.56-~~),
@@ -43,12 +44,12 @@ Provides:
  librust-pyo3-macros-0-dev (= ${binary:Version}),
  librust-pyo3-macros-0+default-dev (= ${binary:Version}),
  librust-pyo3-macros-0+multiple-pymethods-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16+default-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16+multiple-pymethods-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16.5-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16.5+default-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16.5+multiple-pymethods-dev (= ${binary:Version})
+ librust-pyo3-macros-0.17-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.17+default-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.17+multiple-pymethods-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.17.3-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.17.3+default-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.17.3+multiple-pymethods-dev (= ${binary:Version})
 Description: Proc macros for PyO3 package - Rust source code
  This package contains the source for the Rust pyo3-macros crate, packaged by
  debcargo for use with cargo and dh-cargo.
@@ -59,11 +60,11 @@ Multi-Arch: same
 Depends:
  ${misc:Depends},
  librust-pyo3-macros-dev (= ${binary:Version}),
- librust-pyo3-macros-backend-0.16.5+abi3-dev
+ librust-pyo3-macros-backend-0.17.3+abi3-dev
 Provides:
  librust-pyo3-macros-0+abi3-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16+abi3-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16.5+abi3-dev (= ${binary:Version})
+ librust-pyo3-macros-0.17+abi3-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.17.3+abi3-dev (= ${binary:Version})
 Description: Proc macros for PyO3 package - feature "abi3"
  This metapackage enables feature "abi3" for the Rust pyo3-macros crate, by
  pulling in any additional dependencies needed by that feature.
@@ -74,11 +75,11 @@ Multi-Arch: same
 Depends:
  ${misc:Depends},
  librust-pyo3-macros-dev (= ${binary:Version}),
- librust-pyo3-macros-backend-0.16.5+pyproto-dev
+ librust-pyo3-macros-backend-0.17.3+pyproto-dev
 Provides:
  librust-pyo3-macros-0+pyproto-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16+pyproto-dev (= ${binary:Version}),
- librust-pyo3-macros-0.16.5+pyproto-dev (= ${binary:Version})
+ librust-pyo3-macros-0.17+pyproto-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.17.3+pyproto-dev (= ${binary:Version})
 Description: Proc macros for PyO3 package - feature "pyproto"
  This metapackage enables feature "pyproto" for the Rust pyo3-macros crate, by
  pulling in any additional dependencies needed by that feature.
