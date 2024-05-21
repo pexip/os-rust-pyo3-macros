@@ -10,9 +10,9 @@
 # See Cargo.toml.orig for the original contents.
 
 [package]
-edition = "2018"
+edition = "2021"
 name = "pyo3-macros"
-version = "0.17.3"
+version = "0.20.2"
 authors = ["PyO3 Project and Contributors <https://github.com/PyO3>"]
 description = "Proc macros for PyO3 package"
 homepage = "https://github.com/pyo3/pyo3"
@@ -26,7 +26,7 @@ categories = [
     "api-bindings",
     "development-tools::ffi",
 ]
-license = "Apache-2.0"
+license = "MIT OR Apache-2.0"
 repository = "https://github.com/pyo3/pyo3"
 
 [lib]
@@ -37,13 +37,13 @@ version = "1"
 default-features = false
 
 [dependencies.pyo3-macros-backend]
-version = "=0.17.3"
+version = "=0.20.2"
 
 [dependencies.quote]
 version = "1"
 
 [dependencies.syn]
-version = "1.0.56"
+version = "2"
 features = [
     "full",
     "extra-traits",
@@ -52,4 +52,29 @@ features = [
 [features]
 abi3 = ["pyo3-macros-backend/abi3"]
 multiple-pymethods = []
-pyproto = ["pyo3-macros-backend/pyproto"]
+
+[lints.clippy]
+checked_conversions = "warn"
+dbg_macro = "warn"
+explicit_into_iter_loop = "warn"
+explicit_iter_loop = "warn"
+filter_map_next = "warn"
+flat_map_option = "warn"
+let_unit_value = "warn"
+manual_assert = "warn"
+manual_ok_or = "warn"
+todo = "warn"
+unnecessary_wraps = "warn"
+used_underscore_binding = "warn"
+useless_transmute = "warn"
+
+[lints.rust]
+elided_lifetimes_in_paths = "warn"
+invalid_doc_attributes = "warn"
+rust_2018_idioms = "warn"
+rust_2021_prelude_collisions = "warn"
+unused_lifetimes = "warn"
+
+[lints.rustdoc]
+bare_urls = "warn"
+broken_intra_doc_links = "warn"
