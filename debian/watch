@@ -1,0 +1,6 @@
+Version: 5
+
+Source: https://qa.debian.org/cgi-bin/fakeupstream.cgi?upstream=crates.io/pyo3-macros
+Matching-Pattern:  .*/crates/pyo3-macros/@ANY_VERSION@/download
+Filenamemangle: s/.*\/(.*)\/download/pyo3-macros-$1\.tar\.gz/g
+Uversionmangle: s/(\d)[_\.\-\+]?((RC|rc|pre|dev|beta|alpha)\.?\d*)$/$1~$2/

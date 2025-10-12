@@ -1,0 +1,62 @@
+Source: rust-pyo3-macros
+Section: rust
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+ dh-sequence-cargo
+Build-Depends-Arch: cargo:native <!nocheck>,
+ rustc:native (>= 1.74) <!nocheck>,
+ libstd-rust-dev <!nocheck>,
+ librust-proc-macro2-1-dev (>= 1.0.60-~~) <!nocheck>,
+ librust-pyo3-macros-backend-0.26+default-dev <!nocheck>,
+ librust-pyo3-macros-backend-0.26+default-dev (<< 0.26.1-~~) <!nocheck>,
+ librust-quote-1+default-dev <!nocheck>,
+ librust-syn-2+default-dev <!nocheck>,
+ librust-syn-2+extra-traits-dev <!nocheck>,
+ librust-syn-2+full-dev <!nocheck>
+Maintainer: Debian Rust Maintainers <pkg-rust-maintainers@alioth-lists.debian.net>
+Uploaders:
+ Jelmer Vernooĳ <jelmer@debian.org>
+Standards-Version: 4.7.2
+Vcs-Git: https://salsa.debian.org/rust-team/debcargo-conf.git [src/pyo3-macros]
+Vcs-Browser: https://salsa.debian.org/rust-team/debcargo-conf/tree/master/src/pyo3-macros
+Homepage: https://github.com/pyo3/pyo3
+X-Cargo-Crate: pyo3-macros
+
+Package: librust-pyo3-macros-dev
+Architecture: any
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ librust-proc-macro2-1-dev (>= 1.0.60-~~),
+ librust-pyo3-macros-backend-0.26+default-dev,
+ librust-pyo3-macros-backend-0.26+default-dev (<< 0.26.1-~~),
+ librust-pyo3-macros-backend-0.26+experimental-async-dev,
+ librust-pyo3-macros-backend-0.26+experimental-async-dev (<< 0.26.1-~~),
+ librust-pyo3-macros-backend-0.26+experimental-inspect-dev,
+ librust-pyo3-macros-backend-0.26+experimental-inspect-dev (<< 0.26.1-~~),
+ librust-quote-1+default-dev,
+ librust-syn-2+default-dev,
+ librust-syn-2+extra-traits-dev,
+ librust-syn-2+full-dev
+Provides:
+ librust-pyo3-macros+default-dev (= ${binary:Version}),
+ librust-pyo3-macros+experimental-async-dev (= ${binary:Version}),
+ librust-pyo3-macros+experimental-inspect-dev (= ${binary:Version}),
+ librust-pyo3-macros+multiple-pymethods-dev (= ${binary:Version}),
+ librust-pyo3-macros-0-dev (= ${binary:Version}),
+ librust-pyo3-macros-0+default-dev (= ${binary:Version}),
+ librust-pyo3-macros-0+experimental-async-dev (= ${binary:Version}),
+ librust-pyo3-macros-0+experimental-inspect-dev (= ${binary:Version}),
+ librust-pyo3-macros-0+multiple-pymethods-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26+default-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26+experimental-async-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26+experimental-inspect-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26+multiple-pymethods-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26.0-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26.0+default-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26.0+experimental-async-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26.0+experimental-inspect-dev (= ${binary:Version}),
+ librust-pyo3-macros-0.26.0+multiple-pymethods-dev (= ${binary:Version})
+Description: Proc macros for PyO3 package - Rust source code
+ Source code for Debianized Rust crate "pyo3-macros"
